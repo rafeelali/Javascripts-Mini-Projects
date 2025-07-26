@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Age Calculator</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #43cea2, #185a9d);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 340px;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    button {
+      background-color: #28a745;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Age Calculator</h2>
+    <input type="date" id="dob" />
+    <button onclick="calculateExactAge()">Calculate Age</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function calculateExactAge() {
+      const dobInput = document.getElementById('dob').value;
+      const result = document.getElementById('result');
+
+      if (!dobInput) {
+        result.textContent = "❗ Please select your date of birth.";
+        result.style.color = "red";
+        return;
+      }
+
+      const dob = new Date(dobInput);
+      const today = new Date();
+
+      let ageYear = today.getFullYear() - dob.getFullYear();
+      let ageMonth = today.getMonth() - dob.getMonth();
+
+      // Adjust for month and day
+      if (ageMonth < 0 || (ageMonth === 0 && today.getDate() < dob.getDate())) {
+        ageYear -= 1;
+        ageMonth += 12;
+      }
+
+      result.textContent = `🎉 You are ${ageYear} years and ${ageMonth} months old.`;
+      result.style.color = "#333";
+    }
+  </script>
+</body>
+</html>
