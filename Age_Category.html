@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Age Category Checker</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #74ebd5, #9face6);
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 300px;
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      background-color: #6a11cb;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2575fc;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Age Category Checker</h2>
+    <input type="text" id="ageInput" placeholder="Enter your age" />
+    <button onclick="checkAge()">Check Category</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function checkAge() {
+      const input = document.getElementById("ageInput").value;
+      const result = document.getElementById("result");
+      const age = parseInt(input);
+
+      if (isNaN(age) || age <=0) {
+        result.textContent = "❗ Please enter a valid age.";
+        result.style.color = "red";
+      } else if (age <= 12) {
+        result.textContent = "🧒 You are a Child.";
+        result.style.color = "#ff9800";
+      } else if (age <= 17) {
+        result.textContent = "👦 You are a Teenager.";
+        result.style.color = "#2196f3";
+      } else if (age <= 59) {
+        result.textContent = "🧑 You are an Adult.";
+        result.style.color = "#4caf50";
+      } else {
+        result.textContent = "👴 You are a Senior Citizen.";
+        result.style.color = "#9c27b0";
+      }
+    }
+  </script>
+</body>
+</html>
